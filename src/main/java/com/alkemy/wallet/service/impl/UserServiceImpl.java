@@ -17,6 +17,7 @@ import java.util.Optional;
 public class UserServiceImpl implements IUserService {
 
     private final IUserRepository repository;
+
     private final UserMapper mapper;
 
     @Override
@@ -26,6 +27,11 @@ public class UserServiceImpl implements IUserService {
         if (dbResponse.isEmpty())
             throw new EntityNotFoundException(String.format("User not found for id %s", id));
         return mapper.entity2Dto(dbResponse.get());
+    }
+
+    @Override
+    public Optional<User> getByUserId(Long id) {
+        return repository.findById(id);
     }
 
     @Override
