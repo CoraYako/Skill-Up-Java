@@ -9,4 +9,5 @@ public interface IAccountService {
     AccountResponseDto save(AccountRequestDto request);
 
     AccountBalanceDto getAccountBalance(long idUser);
+    AccountResponseDto createAccount(AccountResponseDto dto);
 }
