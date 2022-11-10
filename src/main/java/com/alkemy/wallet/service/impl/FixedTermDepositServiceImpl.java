@@ -12,7 +12,14 @@ import com.alkemy.wallet.service.IAuthService;
 import com.alkemy.wallet.service.IFixedTermDepositService;
 import org.springframework.stereotype.Service;
 
+import java.time.Duration;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Locale;
+
 import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
@@ -70,5 +77,24 @@ public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
                     String.format("Closing Date is less than 30 days: %s  or account has not enough money: %s",closingDateDays,fixedDepositAmount));
         }
 
+    }
+
+    public List<String> simulateFixedTerm(Double amount, LocalDate dateOfEnd){
+        List<String> result = new ArrayList<>();
+
+        LocalDate actualDate = LocalDate.now();
+        Long days = Duration.between(actualDate,dateOfEnd).toDays();
+
+        Double profit = 0.05; //Per day
+        Double profitFactor = profit*days;
+        Double resultBalance = amount * profitFactor;
+
+        result.add("Actual Date: "+ actualDate);
+        result.add("End date: " + dateOfEnd.toString());
+        result.add("Amount invested: "+ amount);
+        result.add("Interest days for "+ days + " : %" +profitFactor);
+        result.add("Result Balance: "+ resultBalance);
+
+        return(result);
     }
 }
