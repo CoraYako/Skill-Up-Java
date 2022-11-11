@@ -14,7 +14,7 @@ import java.util.function.Function;
 @Service
 public class JwtUtils {
 
-    private final String SECRET_KEY = "${com.alkemy.wallet}";
+    private static final String SECRET_KEY = "${com.alkemy.wallet}";
 
     public String extractUsername(String token) {
         return extractClaim(token, Claims::getSubject);

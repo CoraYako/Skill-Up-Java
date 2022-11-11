@@ -40,10 +40,12 @@ class TransactionControllerTest {
     void setUp() {
         token = "eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJhcnJveW9sb2t1cmFAZ21haWwuY29tIiwicm9sZSI6IkFETUlOIiwiZXhwIjoxNjY4MDMxNjk4LCJpYXQiOjE2Njc5OTU2OTh9.tJ_rksi7lC4vldQPbiK83bntFgSIcgxKEz8u3OnBv-U";
 
-        user1 = new User(1L, "user", "user", "user@gmail.com", "12345", LocalDateTime.now(),
+        user1 = new User(1L, "user", "user", "user@gmail.com",
+                "$10$HqJv0Vzw0u6WzPss7JTTzuYazYo7qaQEjUBPkKSauSAlKeMyXt0Dm", LocalDateTime.now(),
                 null, false, null, null, null, null);
 
-        user2 = new User(2L, "admin", "admin", "admin@gmail.com", "12345", LocalDateTime.now(),
+        user2 = new User(2L, "admin", "admin", "admin@gmail.com",
+                "$10$HqJv0Vzw0u6WzPss7JTTzuYazYo7qaQEjUBPkKSauSAlKeMyXt0Dm", LocalDateTime.now(),
                 null, false, null, null, null, null);
 
         account1 = new Account(1L, null, 1500D, 3000D, LocalDateTime.now(),

@@ -14,6 +14,7 @@ import com.alkemy.wallet.service.IAuthService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.text.DecimalFormat;
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.ArrayList;
@@ -54,35 +55,40 @@ public class AccountServiceImpl implements IAccountService {
 
     @Override
     public List<AccountBalanceResponseDto> getAccountBalance(String token) {
+        double valorPesoArs = 160.41;
+        double valorPesoUsd = 0.0062;
+        double porcentaje = 10;
+        DecimalFormat decimalFormat = new DecimalFormat("#.00");
         long idUser = authService.getUserFromToken(token).getId();
-        List<Account> account = accountRepository.findAccountByUserId(idUser);
-        if (account.isEmpty())
+        List<Account> accounts = accountRepository.findAccountByUserId(idUser);
+        if (accounts.isEmpty())
             throw new Mistake("Usuario no disponible");
 
         List<AccountBalanceResponseDto> accountBalanceList = new ArrayList<>();
 
-        for (Account value : account) {
+        for (Account account : accounts) {
             AccountBalanceResponseDto accountBalanceResponseDTO;
 
             LocalDate dateDB = LocalDate.of
-                    (value.getCreationDate().getYear(),
-                            value.getCreationDate().getMonth(),
-                            value.getCreationDate().getDayOfWeek().getValue());
+                    (account.getCreationDate().getYear(),
+                            account.getCreationDate().getMonth(),
+                            account.getCreationDate().getDayOfWeek().getValue());
 
             Period duration = Period.between(dateDB, LocalDate.now());
             accountBalanceResponseDTO = new AccountBalanceResponseDto();
             if (duration.getMonths() > 0) {
-                accountBalanceResponseDTO.setFixedTermDeposit(value.getBalance() * (282 * duration.getMonths()));
+                double aumento = (account.getBalance() * porcentaje) / 100;
+                accountBalanceResponseDTO.setFixedTermDeposit(account.getBalance() + (aumento * duration.getMonths()));
             }
-            if (value.getCurrency().equals(AccountCurrencyEnum.ARS)) {
-                accountBalanceResponseDTO.setBalanceUsd(value.getBalance() / 282);
-                accountBalanceResponseDTO.setBalanceArs(value.getBalance());
+            if (account.getCurrency().equals(AccountCurrencyEnum.ARS)) {
+                double arsToUsd = Double.parseDouble(decimalFormat.format((account.getBalance() * valorPesoArs)));
+                accountBalanceResponseDTO.setBalanceUsd(arsToUsd);
+                accountBalanceResponseDTO.setBalanceArs(account.getBalance());
                 accountBalanceList.add(accountBalanceResponseDTO);
-            }
-
-            if (value.getCurrency().equals(AccountCurrencyEnum.USD)) {
-                accountBalanceResponseDTO.setBalanceUsd(value.getBalance() * 282);
-                accountBalanceResponseDTO.setBalanceArs(value.getBalance());
+            } else if (account.getCurrency().equals(AccountCurrencyEnum.USD)) {
+                double usdToArs = Double.parseDouble(decimalFormat.format((account.getBalance() * valorPesoUsd)));
+                accountBalanceResponseDTO.setBalanceUsd(account.getBalance());
+                accountBalanceResponseDTO.setBalanceArs(usdToArs);
                 accountBalanceList.add(accountBalanceResponseDTO);
             }
         }
