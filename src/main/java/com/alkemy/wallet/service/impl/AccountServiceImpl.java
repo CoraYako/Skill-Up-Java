@@ -59,6 +59,7 @@ public class AccountServiceImpl implements IAccountService {
         double valorPesoUsd = 0.0062;
         double porcentaje = 10;
         DecimalFormat decimalFormat = new DecimalFormat("#.00");
+
         long idUser = authService.getUserFromToken(token).getId();
         List<Account> accounts = accountRepository.findAccountByUserId(idUser);
         if (accounts.isEmpty())

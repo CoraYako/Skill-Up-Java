@@ -2,6 +2,7 @@ package com.alkemy.wallet.controller;
 
 import com.alkemy.wallet.auth.service.UserDetailsCustomService;
 import com.alkemy.wallet.auth.utility.JwtUtils;
+import com.alkemy.wallet.controller.exception.Mistake;
 import com.alkemy.wallet.model.dto.response.AccountBalanceResponseDto;
 import com.alkemy.wallet.model.dto.response.AccountResponseDto;
 import com.alkemy.wallet.model.entity.Account;
@@ -23,6 +24,7 @@ import org.mockito.Mockito;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
+import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 
@@ -32,7 +34,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.Set;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 class AccountControllerTest {
     private final IAccountRepository accountRepository = Mockito.mock(IAccountRepository.class);
@@ -68,18 +70,22 @@ class AccountControllerTest {
                 null, false, user, null, null);
     }
 
-
     @Test
     void getAccountBalance() {
         Mockito.when(userRepository.findByEmail("admin@gmail.com")).thenReturn(Optional.of(user));
-        Mockito.when(accountRepository.findTopByUserId(1L)).thenReturn(Optional.of(account));
+        String tokenGenerado = jwtUtils.generateToken(userDetailsCustomService.loadUserByUsername("admin@gmail.com"));
+
+        Mockito.when(userRepository.findByEmail("admin@gmail.com")).thenReturn(Optional.of(user));
         Mockito.when(accountRepository.findAccountByUserId(1L)).thenReturn(List.of(account));
 
-        String tokenGenerado = jwtUtils.generateToken(userDetailsCustomService.loadUserByUsername("admin@gmail.com"));
         ResponseEntity<List<AccountBalanceResponseDto>> response = controller.getAccountBalance("Bearer " + tokenGenerado);
 
         assertEquals(HttpStatus.OK, response.getStatusCode());
         assertEquals(new ResponseEntity<>(List.of(new AccountBalanceResponseDto(18.6, 3000.0, 3300.0)), HttpStatus.OK), response);
+
+        account.setCurrency(AccountCurrencyEnum.ARS);
+        Mockito.when(accountRepository.findAccountByUserId(1L)).thenReturn(List.of(account));
+        assertEquals(HttpStatus.OK, controller.getAccountBalance("Bearer " + tokenGenerado).getStatusCode());
     }
 
     @Test
