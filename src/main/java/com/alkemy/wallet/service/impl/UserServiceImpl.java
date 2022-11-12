@@ -2,28 +2,30 @@ package com.alkemy.wallet.service.impl;
 
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
-import com.alkemy.wallet.model.dto.response.list.UserListResponseDto;
+import com.alkemy.wallet.model.entity.Account;
+import com.alkemy.wallet.model.entity.Role;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.model.mapper.UserMapper;
 import com.alkemy.wallet.repository.IUserRepository;
 import com.alkemy.wallet.service.IAuthService;
 import com.alkemy.wallet.service.IUserService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
+import java.util.List;
 import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
+@Slf4j
 public class UserServiceImpl implements IUserService {
 
     private final IUserRepository repository;
-
     private final UserMapper mapper;
-
     private final IAuthService authService;
 
     @Override
@@ -58,36 +60,37 @@ public class UserServiceImpl implements IUserService {
     }
 
     @Override
-    public UserListResponseDto getUsers() {
-        UserListResponseDto users = mapper.entityList2DtoList(repository.findAll());
-        if (users.getUsers().isEmpty())
-            throw new IllegalArgumentException(String.format("List is empty or null: %s", users.getUsers()));
+    public void addAccount(User user, Account account) {
+        user.getAccounts().add(account);
+        repository.save(user);
+    }
+
+    @Override
+    public List<UserResponseDto> getUsers() {
+        List<UserResponseDto> users = mapper.entityList2DtoList(repository.findAll());
+        if (users.isEmpty())
+            throw new IllegalArgumentException(String.format("List is empty or null: %s", users));
         return users;
     }
 
     @Override
-    public UserResponseDto deleteUserById(Long userId) {
-        if (repository.existsById(userId)) {
-            User deletedUser = repository.findById(userId).get();
-            deletedUser.setUpdateDate(LocalDateTime.now());
-            repository.save(deletedUser);
-            deletedUser.setSoftDelete(true);
+    public void deleteUserById(Long id, String token) {
+        User loggedUser = authService.getUserFromToken(token);
+        User dbUser = getEntityById(id);
 
-            repository.deleteById(userId);
-            return mapper.entity2Dto(deletedUser);
+        Role ADMIN_ROLE = authService.getRoleById(2L);
+        Role USER_ROLE = authService.getRoleById(1L);
+
+        if (loggedUser.getRoles().contains(ADMIN_ROLE)) {
+            dbUser.setUpdateDate(LocalDateTime.now());
+            repository.save(dbUser);
+            repository.delete(dbUser);
+        } else if (dbUser.getRoles().contains(USER_ROLE) && dbUser.equals(loggedUser)) {
+            dbUser.setUpdateDate(LocalDateTime.now());
+            repository.save(dbUser);
+            repository.delete(dbUser);
         } else {
-            throw new EntityNotFoundException(String.format("User with id: %s was not found or was already deleted", userId.toString()));
+            throw new AccessDeniedException("Access Denied");
         }
-
-    }
-    //Todo: Implementar metodo save y findById
-    @Override
-    public User save(User accountUser) {
-        return null;
-    }
-
-    @Override
-    public Optional<User> findById(long id) {
-        return Optional.empty();
     }
 }

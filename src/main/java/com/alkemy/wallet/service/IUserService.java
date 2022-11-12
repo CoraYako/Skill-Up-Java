@@ -2,10 +2,10 @@ package com.alkemy.wallet.service;
 
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
-import com.alkemy.wallet.model.dto.response.list.UserListResponseDto;
+import com.alkemy.wallet.model.entity.Account;
 import com.alkemy.wallet.model.entity.User;
 
-import java.util.Optional;
+import java.util.List;
 
 public interface IUserService {
 
@@ -15,8 +15,9 @@ public interface IUserService {
 
     UserResponseDto getUserDetails(Long id, String token);
 
-    UserListResponseDto getUsers();
-    UserResponseDto deleteUserById(Long id);
-    User save(User accountUser);
-    Optional<User> findById(long id);
+    void addAccount(User user, Account account);
+
+    List<UserResponseDto> getUsers();
+
+    void deleteUserById(Long id, String token);
 }

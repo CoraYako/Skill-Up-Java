@@ -19,7 +19,9 @@ import javax.persistence.EntityExistsException;
 import javax.persistence.EntityNotFoundException;
 import java.time.LocalDateTime;
 import java.util.HashMap;
+import java.util.InputMismatchException;
 import java.util.Map;
+import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_DATE_TIME;
@@ -137,5 +139,32 @@ public class ExceptionsHandler extends ResponseEntityExceptionHandler {
         messages.put("timestamp", LocalDateTime.now().format(ISO_LOCAL_DATE_TIME));
         messages.put("code", String.valueOf(BAD_REQUEST.value()));
         return new ResponseEntity<>(messages, BAD_REQUEST);
+    }
+
+    @ExceptionHandler(NoSuchElementException.class)
+    protected ResponseEntity<Map<String, String>> noSuchElementHandler(NoSuchElementException ex){
+        Map<String, String> messages=new HashMap<>();
+        messages.put("message", ex.getMessage());
+        messages.put("timestamp", LocalDateTime.now().format(ISO_LOCAL_DATE_TIME));
+        messages.put("code", String.valueOf(NOT_FOUND.value()));
+        return new ResponseEntity<>(messages, NOT_FOUND);
+    }
+
+    @ExceptionHandler(InputMismatchException.class)
+    protected ResponseEntity<Map<String, String>> inputMismatchHandler(InputMismatchException ex){
+        Map<String, String> messages=new HashMap<>();
+        messages.put("message", ex.getMessage());
+        messages.put("timestamp", LocalDateTime.now().format(ISO_LOCAL_DATE_TIME));
+        messages.put("code", String.valueOf(BAD_REQUEST.value()));
+        return new ResponseEntity<>(messages, BAD_REQUEST);
+    }
+
+    @ExceptionHandler(IllegalCallerException.class)
+    protected ResponseEntity<Map<String, String>> illegalCallerHandler(IllegalCallerException ex){
+        Map<String, String> messages=new HashMap<>();
+        messages.put("message", ex.getMessage());
+        messages.put("timestamp", LocalDateTime.now().format(ISO_LOCAL_DATE_TIME));
+        messages.put("code", String.valueOf(FORBIDDEN.value()));
+        return new ResponseEntity<>(messages, FORBIDDEN);
     }
 }

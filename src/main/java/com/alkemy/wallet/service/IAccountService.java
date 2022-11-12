@@ -7,20 +7,22 @@ import com.alkemy.wallet.model.entity.Account;
 import com.alkemy.wallet.model.entity.User;
 
 import java.util.List;
-import java.util.Optional;
 
 public interface IAccountService {
 
-    Account getAccountById(long IdAccount);
-    AccountResponseDto save(Account entity);
-    List<AccountResponseDto> createUserAccounts(Long userId);
+    Account getAccountById(long id);
 
-    AccountResponseDto editAccountBalance(long idAccount, Double newBalance);
+    AccountResponseDto save(AccountRequestDto request, String token);
+
+    List<Account> createUserAccounts(User user);
+
+    Account getByCurrencyAndUserId(String currency, Long userId);
+
+    void editBalanceAndSave(Account account, Double newBalance);
 
     List<AccountBalanceResponseDto> getAccountBalance(String token);
 
-    List<AccountResponseDto> getAccountUserById(long idUser);
+    List<Account> getAccountsByUserId(Long userId);
 
-    String sendMoney(long idTargetUser, double amount, String money, int typeMoney, String type, String token);
-
+    List<AccountResponseDto> getAccountsUserById(Long idUser);
 }

@@ -2,6 +2,9 @@ package com.alkemy.wallet.model.dto.request;
 
 import lombok.*;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotEmpty;
+
 @Data
 @Getter
 @Setter
@@ -9,8 +12,7 @@ import lombok.*;
 @NoArgsConstructor
 @Builder
 public class AccountRequestDto {
+    @NotEmpty(message = "Must declare a currency type (example: USD, EUR")
+    @NotBlank(message = "Currency cannot be whitespaces")
     private String currency;
-    private Double transactionLimit;
-    private Double balance;
-    private Long userId;
 }

@@ -19,7 +19,5 @@ public interface IAuthService {
 
     Role getRoleById(Long roleId);
 
-    Role getRoleByName(String name);
-
     String encode(String toEncode);
 }

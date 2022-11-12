@@ -2,12 +2,13 @@ package com.alkemy.wallet.controller;
 
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
-import com.alkemy.wallet.model.dto.response.list.UserListResponseDto;
 import com.alkemy.wallet.service.IUserService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping("/users")
@@ -28,8 +29,14 @@ public class UserController {
         return ResponseEntity.ok().body(response);
     }
 
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable("id") Long id, @RequestHeader("Authorization") String token) {
+        service.deleteUserById(id, token);
+        return ResponseEntity.noContent().build();
+    }
+
     @GetMapping
-    public ResponseEntity<UserListResponseDto> getUsers() {
+    public ResponseEntity<List<UserResponseDto>> getUsers() {
         return new ResponseEntity<>(service.getUsers(), HttpStatus.OK);
     }
 }

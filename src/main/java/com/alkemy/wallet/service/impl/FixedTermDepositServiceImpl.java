@@ -10,31 +10,24 @@ import com.alkemy.wallet.repository.IFixedTermDepositRepository;
 import com.alkemy.wallet.service.IAccountService;
 import com.alkemy.wallet.service.IAuthService;
 import com.alkemy.wallet.service.IFixedTermDepositService;
+import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
 import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
+@RequiredArgsConstructor
 public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
+
     private final FixedTermDepositMapper mapper;
     private final IFixedTermDepositRepository fixedTermDepositRepository;
     private final IAccountService accountService;
     private  final IAuthService authService;
 
-    public FixedTermDepositServiceImpl(FixedTermDepositMapper mapper,
-                                       IFixedTermDepositRepository fixedTermDepositRepository,
-                                       IAccountService accountService,
-                                       IAuthService authService) {
-       this.mapper = mapper;
-        this.fixedTermDepositRepository = fixedTermDepositRepository;
-        this.accountService = accountService;
-        this.authService=authService;
-    }
-
     @Override
     public FixedTermDepositResponseDto save(FixedTermDepositRequestDto requestDto, String token) {
-        FixedTermDeposit fixedTermDeposit;
+        /*FixedTermDeposit fixedTermDeposit;
         fixedTermDeposit = mapper.dto2Entity(requestDto);
 
         Long closingDateDays = DAYS.between(LocalDateTime.now(),fixedTermDeposit.getClosingDate());
@@ -53,7 +46,7 @@ public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
         Double fixedDepositAmount = requestDto.getAmount();
         if ((closingDateDays >= 30) &&(fixedTermAccount.getBalance()>=fixedDepositAmount)) {
             Double newBalance=fixedTermAccount.getBalance() - fixedDepositAmount;
-            accountService.editAccountBalance(requestDto.getAccountId(),newBalance);
+            accountService.editBalanceAndSave(requestDto.getAccountId(),newBalance);
 
             fixedTermDeposit.setCreationDate(LocalDateTime.now());
 
@@ -68,7 +61,7 @@ public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
         } else {
             throw new IllegalArgumentException(
                     String.format("Closing Date is less than 30 days: %s  or account has not enough money: %s",closingDateDays,fixedDepositAmount));
-        }
-
+        }*/
+    return null;
     }
 }
