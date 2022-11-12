@@ -25,4 +25,8 @@ public class AccountController {
     public ResponseEntity<List<AccountResponseDto>> getAccountUserById(@PathVariable("userId") Long userId) {
         return new ResponseEntity<>(service.getAccountUserById(userId), HttpStatus.OK);
     }
+    @PostMapping
+    public ResponseEntity<AccountResponseDto> createAccount(@RequestBody AccountResponseDto dto){
+        return new ResponseEntity<>(service.createAccount(dto), HttpStatus.CREATED);
+    }
 }

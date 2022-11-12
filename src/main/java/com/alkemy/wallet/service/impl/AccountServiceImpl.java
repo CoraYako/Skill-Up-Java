@@ -18,10 +18,7 @@ import javax.persistence.EntityNotFoundException;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.Period;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static com.alkemy.wallet.model.entity.AccountCurrencyEnum.ARS;
 import static com.alkemy.wallet.model.entity.AccountCurrencyEnum.USD;
@@ -44,7 +41,34 @@ public class AccountServiceImpl implements IAccountService {
     //Se debe hacer el PR de esta funcionalidad
     @Override
     public AccountResponseDto createAccount(AccountResponseDto dto){
-        return null;
+        Account account = new Account();
+        account.setId(dto.getId());
+        account.setBalance(0.0);
+        account.setCreationDate(LocalDateTime.now());
+        account.setCurrency(AccountCurrencyEnum.valueOf(dto.getCurrency()));
+        account.setSoftDelete(Boolean.FALSE);
+        account.setUpdateDate(dto.getUpdatedAt());
+
+
+        account.setUser(userRepository.findById(
+                dto.getUserId()).orElseThrow(
+                ()->new RuntimeException("User not found")));
+
+        if (Objects.equals(dto.getCurrency(), "ARS")){
+            account.setTransactionLimit(300000.00);
+        }
+        else if(Objects.equals(dto.getCurrency(), "USD")){
+            account.setTransactionLimit(1000.00);
+        }
+        else{
+            throw new RuntimeException("Currency must be ARS or USD");
+        }
+
+
+        accountRepository.save(account);
+
+
+        return accountMapper.entity2Dto(account);
     }
     @Override
     public List<Account> createUserAccounts() {
