@@ -17,8 +17,6 @@ public class AccountMapper {
     public Account dto2Entity(AccountRequestDto dto, User user, AccountCurrencyEnum currency) {
         return Account.builder()
                 .currency(currency)
-                .transactionLimit(dto.getTransactionLimit())
-                .balance(dto.getBalance())
                 .creationDate(LocalDateTime.now())
                 .user(user)
                 .build();

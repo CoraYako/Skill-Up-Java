@@ -1,5 +1,6 @@
 package com.alkemy.wallet.controller;
 
+import com.alkemy.wallet.model.dto.request.AccountRequestDto;
 import com.alkemy.wallet.model.dto.response.AccountBalanceResponseDto;
 import com.alkemy.wallet.model.dto.response.AccountResponseDto;
 import com.alkemy.wallet.service.IAccountService;
@@ -26,7 +27,7 @@ public class AccountController {
         return new ResponseEntity<>(service.getAccountUserById(userId), HttpStatus.OK);
     }
     @PostMapping
-    public ResponseEntity<AccountResponseDto> createAccount(@RequestBody AccountResponseDto dto){
-        return new ResponseEntity<>(service.createAccount(dto), HttpStatus.CREATED);
+    public ResponseEntity<AccountResponseDto> createAccount(@RequestBody AccountRequestDto dto,@RequestHeader("Authorization") String token){
+        return new ResponseEntity<>(service.createAccount(dto,token), HttpStatus.CREATED);
     }
 }

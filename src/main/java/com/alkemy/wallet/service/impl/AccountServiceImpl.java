@@ -2,6 +2,7 @@ package com.alkemy.wallet.service.impl;
 
 
 import com.alkemy.wallet.controller.exception.Mistake;
+import com.alkemy.wallet.model.dto.request.AccountRequestDto;
 import com.alkemy.wallet.model.dto.response.AccountBalanceResponseDto;
 import com.alkemy.wallet.model.dto.response.AccountResponseDto;
 import com.alkemy.wallet.model.entity.*;
@@ -40,35 +41,42 @@ public class AccountServiceImpl implements IAccountService {
 
     //Se debe hacer el PR de esta funcionalidad
     @Override
-    public AccountResponseDto createAccount(AccountResponseDto dto){
-        Account account = new Account();
-        account.setId(dto.getId());
-        account.setBalance(0.0);
-        account.setCreationDate(LocalDateTime.now());
-        account.setCurrency(AccountCurrencyEnum.valueOf(dto.getCurrency()));
-        account.setSoftDelete(Boolean.FALSE);
-        account.setUpdateDate(dto.getUpdatedAt());
+    public AccountResponseDto createAccount(AccountRequestDto dto,String token){
 
-
-        account.setUser(userRepository.findById(
-                dto.getUserId()).orElseThrow(
-                ()->new RuntimeException("User not found")));
-
-        if (Objects.equals(dto.getCurrency(), "ARS")){
-            account.setTransactionLimit(300000.00);
-        }
-        else if(Objects.equals(dto.getCurrency(), "USD")){
-            account.setTransactionLimit(1000.00);
-        }
-        else{
-            throw new RuntimeException("Currency must be ARS or USD");
+        Long idUser = authService.getUserFromToken(token).getId();
+        List<Account> accounts = accountRepository.findAccountByUserId(idUser);
+        AccountCurrencyEnum currencyNewAccount;
+        try{
+             currencyNewAccount=AccountCurrencyEnum.valueOf(dto.getCurrency());
+        }catch (IllegalArgumentException exception){
+            throw new IllegalArgumentException("Currency must be ARS or USD");
         }
 
 
-        accountRepository.save(account);
+        if (!accounts.isEmpty()) {
+            for (Account existingAccount : accounts) {
+                if (existingAccount.getCurrency() == currencyNewAccount) {
+                    throw new Mistake("There is an account with that currency");
+                }
+            }
+        }
+            Account account = new Account();
+            account.setBalance(0.0);
+            account.setCreationDate(LocalDateTime.now());
+            account.setCurrency(currencyNewAccount);
+            account.setSoftDelete(Boolean.FALSE);
+            account.setUser(authService.getUserFromToken(token));
+
+            if (ARS==currencyNewAccount){
+                account.setTransactionLimit(300000.00);
+            }
+            else if(USD==currencyNewAccount){
+                account.setTransactionLimit(1000.00);
+            }
 
 
-        return accountMapper.entity2Dto(account);
+            accountRepository.save(account);
+            return accountMapper.entity2Dto(account);
     }
     @Override
     public List<Account> createUserAccounts() {

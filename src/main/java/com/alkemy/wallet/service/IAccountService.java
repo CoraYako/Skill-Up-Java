@@ -12,7 +12,7 @@ import java.util.Optional;
 public interface IAccountService {
 
     Account getAccountById(long IdAccount);
-    AccountResponseDto createAccount(AccountResponseDto dto);
+    AccountResponseDto createAccount(AccountRequestDto dto,String token);
 
     List<Account> createUserAccounts();
 
