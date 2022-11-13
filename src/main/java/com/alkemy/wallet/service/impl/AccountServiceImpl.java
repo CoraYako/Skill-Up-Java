@@ -52,14 +52,16 @@ public class AccountServiceImpl implements IAccountService {
             if (request.getCurrency().equalsIgnoreCase(account.getCurrency().name()))
                 throw new EntityExistsException(String.format("An account in %s already exist", request.getCurrency().toUpperCase()));
         });
-        Account account = Account.builder()
-                .currency(specificTypeOfCurrency(request.getCurrency()))
-                .transactionLimit(1000.0)
-                .balance(0.0)
-                .creationDate(LocalDateTime.now())
-                .user(loggedUser)
-                .build();
-
+        AccountCurrencyEnum currency;
+        double transactionLimit;
+        if (specificTypeOfCurrency(request.getCurrency()).equals(ARS)) {
+            currency = ARS;
+            transactionLimit = 300000.0;
+        } else {
+            currency = USD;
+            transactionLimit = 1000.0;
+        }
+        Account account = mapper.dto2Entity(request, currency, transactionLimit, loggedUser);
         userService.addAccount(loggedUser, account);
         return mapper.entity2Dto(repository.save(account));
     }
@@ -155,24 +157,11 @@ public class AccountServiceImpl implements IAccountService {
         return mapper.entityList2DtoList(account);
     }
 
-    public void specificTypeOfMoney(int typeMoney, String money, Account accountUser, Account accountTargetUser) {
-        String error = "Error solo puede enviar dinero en ";
-        if (typeMoney == 1 && (!accountUser.getCurrency().equals(ARS) || !accountTargetUser.getCurrency().equals(ARS)))
-            throw new Mistake(error + money);
-        else {
-            if (typeMoney == 2 && (!accountUser.getCurrency().equals(USD) || !accountTargetUser.getCurrency().equals(USD)))
-                throw new Mistake(error + money);
-        }
-    }
-
     private AccountCurrencyEnum specificTypeOfCurrency(String type) {
         if (EUR.name().equalsIgnoreCase(type))
             return EUR;
         else if (USD.name().equalsIgnoreCase(type))
             return USD;
-        else if (ARS.name().equalsIgnoreCase(type))
-            return ARS;
-        else
-            throw new Mistake("El tipo ingresado es incorrecto");
+        return ARS;
     }
 }

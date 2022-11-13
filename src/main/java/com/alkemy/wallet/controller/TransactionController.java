@@ -8,6 +8,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 import static com.alkemy.wallet.model.entity.AccountCurrencyEnum.ARS;
 import static com.alkemy.wallet.model.entity.AccountCurrencyEnum.USD;
 import static com.alkemy.wallet.model.entity.TransactionTypeEnum.DEPOSIT;
@@ -33,11 +35,16 @@ public class TransactionController {
 
     @PostMapping("/deposit")
     public ResponseEntity<TransactionResponseDto> deposit(@Validated @RequestBody TransactionRequestDto request, @RequestHeader("Authorization") String token) {
-        return new ResponseEntity<>(service.deposit(request, token), OK);
+        return new ResponseEntity<>(service.doTransaction(request, token), OK);
     }
 
     @PostMapping("/payment")
     public ResponseEntity<TransactionResponseDto> payment(@Validated @RequestBody TransactionRequestDto request, @RequestHeader("Authorization") String token) {
-        return new ResponseEntity<>(service.payment(request, token), OK);
+        return new ResponseEntity<>(service.doTransaction(request, token), OK);
+    }
+
+    @GetMapping("/{userId}")
+    public ResponseEntity<List<TransactionResponseDto>> getAllTransactionsFromUser(@PathVariable("userId") Long userId) {
+        return new ResponseEntity<>(service.listTransactionsByUserId(userId), OK);
     }
 }

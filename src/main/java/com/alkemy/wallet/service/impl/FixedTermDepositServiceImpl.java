@@ -13,7 +13,11 @@ import com.alkemy.wallet.service.IFixedTermDepositService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Objects;
+
 import static java.time.temporal.ChronoUnit.DAYS;
 
 @Service
@@ -21,47 +25,38 @@ import static java.time.temporal.ChronoUnit.DAYS;
 public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
 
     private final FixedTermDepositMapper mapper;
-    private final IFixedTermDepositRepository fixedTermDepositRepository;
+    private final IFixedTermDepositRepository repository;
     private final IAccountService accountService;
-    private  final IAuthService authService;
+    private final IAuthService authService;
 
     @Override
-    public FixedTermDepositResponseDto save(FixedTermDepositRequestDto requestDto, String token) {
-        /*FixedTermDeposit fixedTermDeposit;
-        fixedTermDeposit = mapper.dto2Entity(requestDto);
-
-        Long closingDateDays = DAYS.between(LocalDateTime.now(),fixedTermDeposit.getClosingDate());
-
+    public FixedTermDepositResponseDto create(FixedTermDepositRequestDto requestDto, String token) {
         User user = authService.getUserFromToken(token);
-        Account fixedTermAccount = null;
-        for(Account account: user.getAccounts()){
-            if(account.getId() == requestDto.getAccountId()){
-                fixedTermAccount = account;
-            }
-        }
-        if(fixedTermAccount == null){
-            throw new IllegalArgumentException(String.format("The accountId: %s is not valid o does not belong to an user account",requestDto.getAccountId()));
-        }
+        Account account = accountService.getAccountById(requestDto.getAccountId());
+
+        if (!user.getAccounts().contains(account))
+            throw new IllegalArgumentException(String.format("The account with id %s does not belong to the current user", requestDto.getAccountId()));
+
+        long closingDateDays = DAYS.between(LocalDate.now(), string2LocalDateTime(requestDto.getClosingDate()));
 
         Double fixedDepositAmount = requestDto.getAmount();
-        if ((closingDateDays >= 30) &&(fixedTermAccount.getBalance()>=fixedDepositAmount)) {
-            Double newBalance=fixedTermAccount.getBalance() - fixedDepositAmount;
-            accountService.editBalanceAndSave(requestDto.getAccountId(),newBalance);
+        if ((closingDateDays < 30) && (account.getBalance() < fixedDepositAmount))
+            throw new IllegalArgumentException(String.format("Closing Date is less than 30 days: %s  or account has not enough money: %s", closingDateDays, fixedDepositAmount));
 
-            fixedTermDeposit.setCreationDate(LocalDateTime.now());
+        Double newBalance = account.getBalance() - fixedDepositAmount;
+        accountService.editBalanceAndSave(account, newBalance);
 
-            Double interest = fixedDepositAmount;
-            for (int i=0; i<closingDateDays; i++){
-                interest = interest + interest* 0.005;
-            }
-            fixedTermDeposit.setInterest(interest);
+        double interest = fixedDepositAmount;
+        for (int i = 0; i < closingDateDays; i++) {
+            interest = interest + interest * 0.005;
+        }
 
-            FixedTermDeposit fixedTermToSave = fixedTermDepositRepository.save(fixedTermDeposit);
-            return mapper.entity2Dto(fixedTermToSave);
-        } else {
-            throw new IllegalArgumentException(
-                    String.format("Closing Date is less than 30 days: %s  or account has not enough money: %s",closingDateDays,fixedDepositAmount));
-        }*/
-    return null;
+        FixedTermDeposit fixedTermDeposit = mapper.dto2Entity(requestDto, interest, string2LocalDateTime(requestDto.getClosingDate()),account, user);
+        return mapper.entity2Dto(repository.save(fixedTermDeposit));
+    }
+
+    private LocalDate string2LocalDateTime(String dateTime) {
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy/MM/dd");
+        return LocalDate.parse(dateTime, formatter);
     }
 }

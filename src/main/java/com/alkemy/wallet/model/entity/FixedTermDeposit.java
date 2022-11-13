@@ -4,6 +4,7 @@ import lombok.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
@@ -28,11 +29,11 @@ public class FixedTermDeposit {
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "created_at")
-    private LocalDateTime creationDate;
+    private LocalDate creationDate;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "closing_date")
-    private LocalDateTime closingDate;
+    private LocalDate closingDate;
 
     @ManyToOne
     @JoinColumn(name = "account_id")

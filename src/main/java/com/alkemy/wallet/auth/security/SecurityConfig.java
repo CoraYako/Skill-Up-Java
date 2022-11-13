@@ -47,6 +47,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
                 .antMatchers(GET, "/users").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
                 .antMatchers(GET, "/accounts/{userId}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
+                .antMatchers(GET, "/transactions/{userId}").hasRole(RoleEnum.ADMIN.getSimpleRoleName())
 
                 .anyRequest().authenticated()
                 .and().exceptionHandling()
