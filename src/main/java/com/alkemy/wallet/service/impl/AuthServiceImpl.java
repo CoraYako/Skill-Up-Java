@@ -9,8 +9,6 @@ import com.alkemy.wallet.security.service.UserDetailsCustomService;
 import com.alkemy.wallet.service.IAuthService;
 import com.alkemy.wallet.service.IUserService;
 import com.alkemy.wallet.utils.CustomMessageSource;
-import lombok.RequiredArgsConstructor;
-import lombok.extern.slf4j.Slf4j;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -19,8 +17,6 @@ import org.springframework.stereotype.Service;
 import javax.persistence.EntityExistsException;
 
 @Service
-@RequiredArgsConstructor
-@Slf4j
 public class AuthServiceImpl implements IAuthService {
 
     private final AuthenticationManager authenticationManager;

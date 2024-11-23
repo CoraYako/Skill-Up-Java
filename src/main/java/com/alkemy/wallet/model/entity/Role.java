@@ -1,10 +1,6 @@
 package com.alkemy.wallet.model.entity;
 
 import com.alkemy.wallet.model.constant.RoleEnum;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 
@@ -16,10 +12,6 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
 @Table(name = "ROLES")
 public class Role implements GrantedAuthority {
 

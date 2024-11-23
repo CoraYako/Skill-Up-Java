@@ -12,7 +12,6 @@ import com.alkemy.wallet.service.IAccountService;
 import com.alkemy.wallet.service.IRoleService;
 import com.alkemy.wallet.service.IUserService;
 import com.alkemy.wallet.utils.CustomMessageSource;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -28,7 +27,6 @@ import static com.alkemy.wallet.utils.PageUtil.PAGE_SIZE;
 import static java.time.LocalDateTime.now;
 
 @Service
-@RequiredArgsConstructor
 public class UserServiceImpl implements IUserService {
 
     private final IUserRepository userRepository;

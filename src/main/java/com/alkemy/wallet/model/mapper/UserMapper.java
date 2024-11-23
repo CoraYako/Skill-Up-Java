@@ -3,14 +3,12 @@ package com.alkemy.wallet.model.mapper;
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
 import com.alkemy.wallet.model.entity.User;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.stereotype.Component;
 
 import java.util.stream.Collectors;
 
 @Component
-@RequiredArgsConstructor
 public class UserMapper {
 
     public User dto2Entity(UserRequestDto dto) {

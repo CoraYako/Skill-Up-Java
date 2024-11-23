@@ -3,7 +3,6 @@ package com.alkemy.wallet.security.service;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IUserRepository;
 import com.alkemy.wallet.utils.CustomMessageSource;
-import lombok.RequiredArgsConstructor;
 import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
@@ -13,7 +12,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.Optional;
 
 @Service
-@RequiredArgsConstructor
 public class UserDetailsCustomService implements UserDetailsService {
 
     private final IUserRepository repository;

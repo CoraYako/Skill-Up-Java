@@ -15,7 +15,6 @@ import com.alkemy.wallet.service.IAccountService;
 import com.alkemy.wallet.service.IAuthService;
 import com.alkemy.wallet.service.IUserService;
 import com.alkemy.wallet.utils.CustomMessageSource;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Lazy;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -34,7 +33,6 @@ import static com.alkemy.wallet.utils.PageUtil.PAGE_SIZE;
 
 @Service
 @Transactional
-@RequiredArgsConstructor(onConstructor_ = {@Lazy})
 public class AccountServiceImpl implements IAccountService {
 
     protected static final double TRANSACTION_LIMIT_USD = 1000.0;

@@ -5,7 +5,6 @@ import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IRoleRepository;
 import com.alkemy.wallet.service.IRoleService;
 import com.alkemy.wallet.utils.CustomMessageSource;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -16,7 +15,6 @@ import static com.alkemy.wallet.model.constant.RoleEnum.USER;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 public class RoleServiceImpl implements IRoleService {
 
     private final IRoleRepository roleRepository;
