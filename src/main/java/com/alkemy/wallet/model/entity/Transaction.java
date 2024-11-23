@@ -1,15 +1,14 @@
 package com.alkemy.wallet.model.entity;
 
 import com.alkemy.wallet.model.constant.TransactionTypeEnum;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TRANSACTIONS")
 public class Transaction {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
