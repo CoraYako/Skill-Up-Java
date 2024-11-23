@@ -14,7 +14,6 @@ import com.alkemy.wallet.service.IAuthService;
 import com.alkemy.wallet.service.IFixedTermDepositService;
 import com.alkemy.wallet.service.IUserService;
 import com.alkemy.wallet.utils.CustomMessageSource;
-import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -25,7 +24,6 @@ import static com.alkemy.wallet.utils.FixedTermDepositUtil.calculateInterest;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
 
     private final FixedTermDepositMapper mapper;

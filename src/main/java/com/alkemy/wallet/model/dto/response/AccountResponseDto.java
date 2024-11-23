@@ -1,15 +1,7 @@
 package com.alkemy.wallet.model.dto.response;
 
-import lombok.*;
-
 import java.time.LocalDateTime;
 
-@Data
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class AccountResponseDto {
     private Long id;
     private String currency;

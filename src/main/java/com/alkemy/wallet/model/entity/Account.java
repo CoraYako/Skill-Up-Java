@@ -1,7 +1,6 @@
 package com.alkemy.wallet.model.entity;
 
 import com.alkemy.wallet.model.constant.AccountCurrencyEnum;
-import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -14,11 +13,6 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.LAZY;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@ToString
 @Table(name = "ACCOUNTS")
 @SQLDelete(sql = "UPDATE accounts SET DELETED=true WHERE id=?")
 @Where(clause = "DELETED=false")
@@ -55,11 +49,9 @@ public class Account {
     private User user;
 
     @OneToMany(mappedBy = "account", fetch = LAZY, cascade = ALL)
-    @ToString.Exclude
     private List<Transaction> transactions;
 
     @OneToMany(mappedBy = "account", fetch = LAZY, cascade = ALL)
-    @ToString.Exclude
     private List<FixedTermDeposit> fixedTermDeposits;
 }
 

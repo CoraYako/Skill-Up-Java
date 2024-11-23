@@ -1,19 +1,10 @@
 package com.alkemy.wallet.model.dto.request;
 
-import lombok.*;
-
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotEmpty;
 
-@Data
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class UserRequestDto {
-
     @NotEmpty(message = "{user.invalid-first-name}")
     @NotBlank(message = "{user.invalid-first-name}")
     private String firstName;

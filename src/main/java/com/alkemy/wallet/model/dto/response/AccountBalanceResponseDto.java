@@ -1,14 +1,7 @@
 package com.alkemy.wallet.model.dto.response;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import lombok.*;
 
-@Data
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 public class AccountBalanceResponseDto {
     private Double balanceARS;
     private Double balanceUSD;

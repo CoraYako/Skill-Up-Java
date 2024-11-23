@@ -13,7 +13,6 @@ import com.alkemy.wallet.service.IAuthService;
 import com.alkemy.wallet.service.ITransactionService;
 import com.alkemy.wallet.service.IUserService;
 import com.alkemy.wallet.utils.CustomMessageSource;
-import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
@@ -29,7 +28,6 @@ import static com.alkemy.wallet.utils.TransactionUtil.setTransactionValues;
 
 @Service
 @Transactional
-@RequiredArgsConstructor
 public class TransactionServiceImpl implements ITransactionService {
 
     private final TransactionMapper mapper;

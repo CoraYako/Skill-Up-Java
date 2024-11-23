@@ -2,7 +2,6 @@ package com.alkemy.wallet.security.config;
 
 import com.alkemy.wallet.security.jwt.JwtRequestFilter;
 import com.alkemy.wallet.security.service.UserDetailsCustomService;
-import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -22,7 +21,6 @@ import static org.springframework.security.config.http.SessionCreationPolicy.STA
 @Configuration
 @EnableWebSecurity
 @EnableGlobalMethodSecurity(prePostEnabled = true, securedEnabled = true, jsr250Enabled = true)
-@RequiredArgsConstructor
 public class SecurityConfig {
 
     protected static final String AUTH_WHITELIST = "/api/v1/auth/**";

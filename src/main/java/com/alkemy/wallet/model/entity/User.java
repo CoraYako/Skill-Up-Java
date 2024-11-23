@@ -1,6 +1,5 @@
 package com.alkemy.wallet.model.entity;
 
-import lombok.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -19,11 +18,6 @@ import static javax.persistence.FetchType.LAZY;
 import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
-@Getter
-@Setter
-@AllArgsConstructor
-@NoArgsConstructor
-@Builder
 @Table(name = "USERS")
 @SQLDelete(sql = "UPDATE users SET ENABLED=false WHERE id=?")
 @Where(clause = "ENABLED=true")
