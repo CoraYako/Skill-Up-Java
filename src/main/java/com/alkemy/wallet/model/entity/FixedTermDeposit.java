@@ -1,15 +1,14 @@
 package com.alkemy.wallet.model.entity;
 
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "FIXED_TERM_DEPOSITS")
 public class FixedTermDeposit {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

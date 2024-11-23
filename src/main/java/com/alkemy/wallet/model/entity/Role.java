@@ -1,20 +1,19 @@
 package com.alkemy.wallet.model.entity;
 
 import com.alkemy.wallet.model.constant.RoleEnum;
+import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.GrantedAuthority;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 
+import static jakarta.persistence.FetchType.LAZY;
+import static jakarta.persistence.GenerationType.IDENTITY;
 import static java.time.LocalDateTime.now;
-import static javax.persistence.FetchType.LAZY;
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "ROLES")
 public class Role implements GrantedAuthority {
-
     @Id
     @GeneratedValue(strategy = IDENTITY)
     @Column(name = "ID")

@@ -1,23 +1,22 @@
 package com.alkemy.wallet.model.entity;
 
 import com.alkemy.wallet.model.constant.AccountCurrencyEnum;
+import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 
-import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.FetchType.LAZY;
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.FetchType.LAZY;
 
 @Entity
 @Table(name = "ACCOUNTS")
 @SQLDelete(sql = "UPDATE accounts SET DELETED=true WHERE id=?")
 @Where(clause = "DELETED=false")
 public class Account {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")

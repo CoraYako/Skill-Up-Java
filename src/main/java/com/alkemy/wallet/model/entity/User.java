@@ -1,30 +1,27 @@
 package com.alkemy.wallet.model.entity;
 
+import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.Where;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.security.core.userdetails.UserDetails;
 
-import javax.persistence.*;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
+import static jakarta.persistence.CascadeType.ALL;
+import static jakarta.persistence.FetchType.LAZY;
 import static java.lang.Boolean.TRUE;
 import static java.time.LocalDateTime.now;
-import static javax.persistence.CascadeType.ALL;
-import static javax.persistence.FetchType.EAGER;
-import static javax.persistence.FetchType.LAZY;
-import static javax.persistence.GenerationType.IDENTITY;
 
 @Entity
 @Table(name = "USERS")
 @SQLDelete(sql = "UPDATE users SET ENABLED=false WHERE id=?")
 @Where(clause = "ENABLED=true")
 public class User implements UserDetails {
-
     @Id
-    @GeneratedValue(strategy = IDENTITY)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "ID")
     private Long id;
 
@@ -40,7 +37,7 @@ public class User implements UserDetails {
     @Column(nullable = false, name = "PASSWORD")
     private String password;
 
-    @OneToMany(mappedBy = "user", fetch = EAGER, cascade = ALL)
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER, cascade = ALL)
     Set<Role> authorities;
 
     @Column(name = "ENABLED")
