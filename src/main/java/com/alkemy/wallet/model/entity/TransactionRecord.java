@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 
 @Entity
 @Table(name = "TRANSACTIONS")
-public class Transaction {
+public class TransactionRecord {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "OPERATION_NUMBER")
@@ -37,8 +37,8 @@ public class Transaction {
     @JoinColumn(name = "DESTINATION_ACCOUNT")
     private Account destinationAccount;
 
-    public Transaction(TransactionTypeEnum operationType, Account originAccount, Account destinationAccount,
-                       BigDecimal amount, String description) {
+    public TransactionRecord(TransactionTypeEnum operationType, Account originAccount, Account destinationAccount,
+                             BigDecimal amount, String description) {
         this.operationType = operationType;
         this.originAccount = originAccount;
         this.destinationAccount = destinationAccount;
@@ -46,7 +46,7 @@ public class Transaction {
         this.description = description;
     }
 
-    public Transaction() {
+    public TransactionRecord() {
     }
 
     public Long getOperationNumber() {

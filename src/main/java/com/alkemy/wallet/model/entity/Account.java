@@ -47,7 +47,7 @@ public class Account {
     private boolean closed;
 
     @OneToMany(mappedBy = "account", fetch = LAZY, cascade = ALL)
-    private Set<Transaction> movements;
+    private Set<TransactionRecord> movements;
 
     public Account(AccountCurrencyEnum currencyType, double transactionLimit) {
         this.currencyType = currencyType;
@@ -89,7 +89,7 @@ public class Account {
         return closed;
     }
 
-    public Set<Transaction> getMovements() {
+    public Set<TransactionRecord> getMovements() {
         return movements;
     }
 
