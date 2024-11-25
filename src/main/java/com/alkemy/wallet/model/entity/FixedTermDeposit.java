@@ -44,11 +44,14 @@ public class FixedTermDeposit {
     private Account sourceAccount;
 
     public FixedTermDeposit(int fixedTermDurationInDays, BigDecimal investmentAmount, Account sourceAccount) {
+        this.validateDataBeforeCreation(fixedTermDurationInDays, investmentAmount, sourceAccount);
+
         this.initializeDatePeriodForFixedTerm(fixedTermDurationInDays);
-        this.setInvestmentAmount(investmentAmount);
+
         this.interestEarned = calculateInterest(investmentAmount, fixedTermDurationInDays);
         this.fixedTermDurationInDays = fixedTermDurationInDays;
-        this.setSourceAccount(sourceAccount);
+        this.investmentAmount = investmentAmount;
+        this.sourceAccount = sourceAccount;
     }
 
     public FixedTermDeposit() {
@@ -60,13 +63,6 @@ public class FixedTermDeposit {
 
     public BigDecimal getInvestmentAmount() {
         return investmentAmount;
-    }
-
-    private void setInvestmentAmount(BigDecimal investmentAmount) {
-        if (Objects.isNull(investmentAmount) || investmentAmount.compareTo(BigDecimal.ZERO) <= 0)
-            throw new InvalidDepositAmount("Invalid amount to invest for fixed term");
-
-        this.investmentAmount = investmentAmount;
     }
 
     public BigDecimal getInterestEarned() {
@@ -89,21 +85,7 @@ public class FixedTermDeposit {
         return sourceAccount;
     }
 
-    private void setSourceAccount(Account sourceAccount) {
-        if (Objects.isNull(sourceAccount))
-            throw new NullAccount("The source account to init fixed term is invalid or null");
-
-        this.sourceAccount = sourceAccount;
-    }
-
-    private boolean notValidDaysRangeForFixedTerm(long days) {
-        return days < MIN_DAYS_FOR_FIXED_TERM || days > MAX_DAYS_FOR_FIXED_TERM;
-    }
-
-    private void initializeDatePeriodForFixedTerm(long days) throws InvalidDaysRange {
-        if (notValidDaysRangeForFixedTerm(days))
-            throw new InvalidDaysRange("Days for fixed term out of range: min is 30 days and max is 90 days");
-
+    private void initializeDatePeriodForFixedTerm(long days) {
         this.startDate = LocalDateTime.now();
         this.endDate = startDate.plusDays(days);
     }
@@ -114,5 +96,26 @@ public class FixedTermDeposit {
             interestGenerated = interestGenerated.add(amount.multiply(INTEREST_RATE));
         }
         return interestGenerated;
+    }
+
+    private void validateInvestmentAmount(BigDecimal investmentAmount) {
+        if (Objects.isNull(investmentAmount) || investmentAmount.compareTo(BigDecimal.ZERO) <= 0)
+            throw new InvalidDepositAmount("Invalid amount to invest for fixed term");
+    }
+
+    private void validateSourceAccount(Account sourceAccount) {
+        if (Objects.isNull(sourceAccount))
+            throw new NullAccount("The source account to init fixed term is invalid or null");
+    }
+
+    private void validateDaysRangeForFixedTerm(long days) {
+        if (days < MIN_DAYS_FOR_FIXED_TERM || days > MAX_DAYS_FOR_FIXED_TERM)
+            throw new InvalidDaysRange("Days for fixed term out of range: min is 30 days and max is 90 days");
+    }
+
+    private void validateDataBeforeCreation(int durationInDays, BigDecimal investmentAmount, Account sourceAccount) {
+        validateDaysRangeForFixedTerm(durationInDays);
+        validateInvestmentAmount(investmentAmount);
+        validateSourceAccount(sourceAccount);
     }
 }
