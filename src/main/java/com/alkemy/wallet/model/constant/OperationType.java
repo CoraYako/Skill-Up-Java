@@ -1,5 +1,5 @@
 package com.alkemy.wallet.model.constant;
 
-public enum TransactionTypeEnum {
+public enum OperationType {
     INCOME, PAYMENT, DEPOSIT
 }
