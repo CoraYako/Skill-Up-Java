@@ -1,6 +1,6 @@
 package com.alkemy.wallet.model.entity;
 
-import com.alkemy.wallet.model.constant.TransactionTypeEnum;
+import com.alkemy.wallet.model.constant.OperationType;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -17,7 +17,7 @@ public class TransactionRecord {
 
     @Column(nullable = false, name = "OPERATION_TYPE")
     @Enumerated(EnumType.STRING)
-    private TransactionTypeEnum operationType;
+    private OperationType operationType;
 
     @Column(nullable = false, name = "AMOUNT")
     private BigDecimal amount;
@@ -30,20 +30,16 @@ public class TransactionRecord {
     private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "ORIGIN_ACCOUNT")
-    private Account originAccount;
-
-    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DESTINATION_ACCOUNT")
     private Account destinationAccount;
 
-    public TransactionRecord(TransactionTypeEnum operationType, Account originAccount, Account destinationAccount,
+    public TransactionRecord(OperationType operationType, Account destinationAccount,
                              BigDecimal amount, String description) {
         this.operationType = operationType;
-        this.originAccount = originAccount;
         this.destinationAccount = destinationAccount;
         this.amount = amount;
         this.description = description;
+        this.date = LocalDateTime.now();
     }
 
     public TransactionRecord() {
@@ -53,7 +49,7 @@ public class TransactionRecord {
         return operationNumber;
     }
 
-    public TransactionTypeEnum getOperationType() {
+    public OperationType getOperationType() {
         return operationType;
     }
 
@@ -67,10 +63,6 @@ public class TransactionRecord {
 
     public LocalDateTime getDate() {
         return date;
-    }
-
-    public Account getOriginAccount() {
-        return originAccount;
     }
 
     public Account getDestinationAccount() {
