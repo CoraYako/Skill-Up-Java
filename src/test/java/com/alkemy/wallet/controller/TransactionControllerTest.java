@@ -1,11 +1,11 @@
 /*
 package com.alkemy.wallet.controller;
 
-import com.alkemy.wallet.model.entity.Account;
-import com.alkemy.wallet.model.constant.AccountCurrencyEnum;
+import com.alkemy.wallet.account.Account;
+import com.alkemy.wallet.account.AccountCurrencyEnum;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.ITransactionRepository;
-import com.alkemy.wallet.service.IAccountService;
+import com.alkemy.wallet.account.IAccountService;
 import com.alkemy.wallet.service.IAuthenticationService;
 import com.alkemy.wallet.service.ITransactionService;
 import com.alkemy.wallet.service.IUserService;

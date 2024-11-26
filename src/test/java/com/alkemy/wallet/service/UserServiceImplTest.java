@@ -1,17 +1,19 @@
 package com.alkemy.wallet.service;
 
+import com.alkemy.wallet.account.service.IAccountService;
+import com.alkemy.wallet.auth.IRoleService;
 import com.alkemy.wallet.config.AppConfig;
-import com.alkemy.wallet.model.constant.AccountCurrencyEnum;
-import com.alkemy.wallet.model.constant.RoleEnum;
+import com.alkemy.wallet.account.domain.CurrencyType;
+import com.alkemy.wallet.auth.RoleEnum;
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.request.UserUpdateRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
-import com.alkemy.wallet.model.entity.Account;
-import com.alkemy.wallet.model.entity.Role;
+import com.alkemy.wallet.account.domain.Account;
+import com.alkemy.wallet.auth.Role;
 import com.alkemy.wallet.model.entity.User;
-import com.alkemy.wallet.model.mapper.UserMapper;
+import com.alkemy.wallet.customer.mapper.UserMapper;
 import com.alkemy.wallet.repository.IUserRepository;
-import com.alkemy.wallet.service.impl.UserServiceImpl;
+import com.alkemy.wallet.customer.service.UserServiceImpl;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -169,7 +171,7 @@ class UserServiceImplTest {
         Account account1, account2, account3, account4;
         account1 = new Account();
         account1.setId(1L);
-        account1.setCurrency(AccountCurrencyEnum.ARS);
+        account1.setCurrency(CurrencyType.ARS);
         account1.setTransactionLimit(300000.0);
         account1.setBalance(0.0);
         account1.setUpdateDate(null);
@@ -179,7 +181,7 @@ class UserServiceImplTest {
 
         account2 = new Account();
         account2.setId(2L);
-        account2.setCurrency(AccountCurrencyEnum.USD);
+        account2.setCurrency(CurrencyType.USD);
         account2.setTransactionLimit(1000.0);
         account2.setBalance(0.0);
         account2.setUpdateDate(null);
@@ -189,7 +191,7 @@ class UserServiceImplTest {
 
         account3 = new Account();
         account3.setId(3L);
-        account3.setCurrency(AccountCurrencyEnum.ARS);
+        account3.setCurrency(CurrencyType.ARS);
         account3.setTransactionLimit(300000.0);
         account3.setBalance(0.0);
         account3.setUpdateDate(null);
@@ -199,7 +201,7 @@ class UserServiceImplTest {
 
         account4 = new Account();
         account4.setId(4L);
-        account4.setCurrency(AccountCurrencyEnum.USD);
+        account4.setCurrency(CurrencyType.USD);
         account4.setTransactionLimit(1000.0);
         account4.setBalance(0.0);
         account4.setUpdateDate(null);
@@ -209,7 +211,7 @@ class UserServiceImplTest {
 
         accountUser3 = new Account();
         accountUser3.setId(5L);
-        accountUser3.setCurrency(AccountCurrencyEnum.USD);
+        accountUser3.setCurrency(CurrencyType.USD);
         accountUser3.setTransactionLimit(1000.0);
         accountUser3.setBalance(0.0);
         accountUser3.setUpdateDate(null);
