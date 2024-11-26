@@ -45,7 +45,7 @@ public class Customer {
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "LAST_MODIFICATION")
-    private LocalDateTime lastProfileModification;
+    private LocalDateTime lastProfileModificationDate;
 
     @OneToMany(fetch = LAZY, cascade = ALL)
     private List<Account> associatedAccounts;
@@ -83,8 +83,8 @@ public class Customer {
         return registrationDate;
     }
 
-    public LocalDateTime getLastProfileModification() {
-        return lastProfileModification;
+    public LocalDateTime getLastProfileModificationDate() {
+        return lastProfileModificationDate;
     }
 
     public List<Account> getAssociatedAccounts() {
@@ -105,8 +105,8 @@ public class Customer {
             this.password = newPassword;
     }
 
-    public void setLastProfileModification(LocalDateTime lastProfileModification) {
-        if (Objects.nonNull(lastProfileModification))
-            this.lastProfileModification = lastProfileModification;
+    public void setLastProfileModificationDate(LocalDateTime lastProfileModificationDate) {
+        if (Objects.nonNull(lastProfileModificationDate))
+            this.lastProfileModificationDate = lastProfileModificationDate;
     }
 }
