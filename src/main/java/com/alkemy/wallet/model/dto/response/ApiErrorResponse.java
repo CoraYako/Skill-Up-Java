@@ -5,8 +5,9 @@ import org.springframework.http.HttpStatus;
 import java.time.LocalDateTime;
 import java.util.List;
 
-public class ApiErrorResponse {
-    private HttpStatus status;
-    private LocalDateTime timestamp;
-    private List<String> errors;
+public record ApiErrorResponse(
+        HttpStatus status,
+        LocalDateTime timestamp,
+        List<String> errorsStack
+) {
 }
