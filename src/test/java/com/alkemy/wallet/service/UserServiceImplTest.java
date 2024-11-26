@@ -1,15 +1,15 @@
 package com.alkemy.wallet.service;
 
 import com.alkemy.wallet.account.service.IAccountService;
-import com.alkemy.wallet.auth.IRoleService;
+import com.alkemy.wallet.authentication.IRoleService;
 import com.alkemy.wallet.config.AppConfig;
 import com.alkemy.wallet.account.domain.CurrencyType;
-import com.alkemy.wallet.auth.RoleEnum;
+import com.alkemy.wallet.authentication.RoleEnum;
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.request.UserUpdateRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
 import com.alkemy.wallet.account.domain.Account;
-import com.alkemy.wallet.auth.Role;
+import com.alkemy.wallet.authentication.Role;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.customer.mapper.UserMapper;
 import com.alkemy.wallet.repository.IUserRepository;

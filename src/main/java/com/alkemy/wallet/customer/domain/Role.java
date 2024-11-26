@@ -1,4 +1,4 @@
-package com.alkemy.wallet.auth;
+package com.alkemy.wallet.customer.domain;
 
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;

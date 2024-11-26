@@ -11,7 +11,7 @@ import com.alkemy.wallet.fixedterm.domain.FixedTermDeposit;
 import com.alkemy.wallet.model.entity.Transaction;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IAccountRepository;
-import com.alkemy.wallet.auth.IAuthService;
+import com.alkemy.wallet.authentication.service.IAuthService;
 import com.alkemy.wallet.customer.service.IUserService;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.data.domain.Page;

@@ -5,11 +5,10 @@ import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.request.UserUpdateRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
 import com.alkemy.wallet.account.domain.Account;
-import com.alkemy.wallet.auth.Role;
+import com.alkemy.wallet.authentication.Role;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IUserRepository;
 import com.alkemy.wallet.account.service.IAccountService;
-import com.alkemy.wallet.auth.IRoleService;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -21,7 +20,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collections;
 import java.util.Optional;
 
-import static com.alkemy.wallet.auth.RoleEnum.ADMIN;
+import static com.alkemy.wallet.authentication.RoleEnum.ADMIN;
 import static com.alkemy.wallet.utils.PageUtil.PAGE_SIZE;
 import static java.time.LocalDateTime.now;
 

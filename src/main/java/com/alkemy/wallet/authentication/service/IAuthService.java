@@ -1,4 +1,4 @@
-package com.alkemy.wallet.auth;
+package com.alkemy.wallet.authentication.service;
 
 import com.alkemy.wallet.model.dto.request.AuthRequestDto;
 import com.alkemy.wallet.model.dto.request.UserRequestDto;

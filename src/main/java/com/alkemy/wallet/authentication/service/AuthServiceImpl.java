@@ -1,11 +1,11 @@
-package com.alkemy.wallet.auth;
+package com.alkemy.wallet.authentication.service;
 
 import com.alkemy.wallet.model.dto.request.AuthRequestDto;
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.response.AuthResponseDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
-import com.alkemy.wallet.auth.security.jwt.JwtUtils;
-import com.alkemy.wallet.auth.security.service.UserDetailsCustomService;
+import com.alkemy.wallet.security.jwt.JwtUtils;
+import com.alkemy.wallet.security.service.UserDetailsCustomService;
 import com.alkemy.wallet.customer.service.IUserService;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.security.authentication.AuthenticationManager;

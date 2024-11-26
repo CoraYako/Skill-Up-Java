@@ -1,7 +1,7 @@
-package com.alkemy.wallet.auth.security.config;
+package com.alkemy.wallet.security.config;
 
-import com.alkemy.wallet.auth.security.jwt.JwtRequestFilter;
-import com.alkemy.wallet.auth.security.service.UserDetailsCustomService;
+import com.alkemy.wallet.security.jwt.JwtRequestFilter;
+import com.alkemy.wallet.security.service.UserDetailsCustomService;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;

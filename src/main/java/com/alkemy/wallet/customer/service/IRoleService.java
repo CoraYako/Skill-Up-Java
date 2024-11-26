@@ -1,4 +1,4 @@
-package com.alkemy.wallet.auth;
+package com.alkemy.wallet.customer.service;
 
 import com.alkemy.wallet.model.entity.User;
 

@@ -1,4 +1,4 @@
-package com.alkemy.wallet.auth.security.service;
+package com.alkemy.wallet.security.service;
 
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IUserRepository;

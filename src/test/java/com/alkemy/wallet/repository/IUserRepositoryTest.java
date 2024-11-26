@@ -2,9 +2,9 @@ package com.alkemy.wallet.repository;
 
 import com.alkemy.wallet.account.domain.Account;
 import com.alkemy.wallet.account.domain.CurrencyType;
-import com.alkemy.wallet.auth.Role;
+import com.alkemy.wallet.authentication.Role;
 import com.alkemy.wallet.fixedterm.domain.FixedTermDeposit;
-import com.alkemy.wallet.auth.RoleEnum;
+import com.alkemy.wallet.authentication.RoleEnum;
 import com.alkemy.wallet.model.constant.TransactionTypeEnum;
 import com.alkemy.wallet.utils.DateUtil;
 import org.junit.jupiter.api.BeforeEach;

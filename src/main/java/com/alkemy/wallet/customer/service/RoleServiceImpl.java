@@ -1,4 +1,4 @@
-package com.alkemy.wallet.auth;
+package com.alkemy.wallet.customer.service;
 
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IRoleRepository;
@@ -8,8 +8,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.InputMismatchException;
 
-import static com.alkemy.wallet.auth.RoleEnum.ADMIN;
-import static com.alkemy.wallet.auth.RoleEnum.USER;
+import static com.alkemy.wallet.authentication.RoleEnum.ADMIN;
+import static com.alkemy.wallet.authentication.RoleEnum.USER;
 
 @Service
 @Transactional

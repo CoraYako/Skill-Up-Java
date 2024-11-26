@@ -10,7 +10,7 @@ import com.alkemy.wallet.account.domain.Account;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IFixedTermDepositRepository;
 import com.alkemy.wallet.account.service.IAccountService;
-import com.alkemy.wallet.auth.IAuthService;
+import com.alkemy.wallet.authentication.service.IAuthService;
 import com.alkemy.wallet.customer.service.IUserService;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.stereotype.Service;

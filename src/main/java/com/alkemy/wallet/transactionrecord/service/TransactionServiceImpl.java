@@ -8,7 +8,7 @@ import com.alkemy.wallet.model.entity.Transaction;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.ITransactionRepository;
 import com.alkemy.wallet.account.service.IAccountService;
-import com.alkemy.wallet.auth.IAuthService;
+import com.alkemy.wallet.authentication.service.IAuthService;
 import com.alkemy.wallet.customer.service.IUserService;
 import com.alkemy.wallet.transactionrecord.mapper.TransactionMapper;
 import com.alkemy.wallet.utils.CustomMessageSource;

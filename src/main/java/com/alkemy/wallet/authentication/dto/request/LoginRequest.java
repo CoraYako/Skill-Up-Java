@@ -1,4 +1,4 @@
-package com.alkemy.wallet.auth;
+package com.alkemy.wallet.authentication.dto.request;
 
 public record LoginRequest(
         String email,
