@@ -1,6 +1,6 @@
 package com.alkemy.wallet.service;
 
-import com.alkemy.wallet.account.service.IAccountService;
+import com.alkemy.wallet.account.service.AccountService;
 import com.alkemy.wallet.authentication.IRoleService;
 import com.alkemy.wallet.config.AppConfig;
 import com.alkemy.wallet.account.domain.CurrencyType;
@@ -58,7 +58,7 @@ class UserServiceImplTest {
     @Mock
     protected CustomerMapper userMapper;
     @Mock
-    protected IAccountService accountService;
+    protected AccountService accountService;
     @Mock
     protected BCryptPasswordEncoder passwordEncoder;
     @Mock

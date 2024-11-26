@@ -1,6 +1,6 @@
 package com.alkemy.wallet.account.controller;
 
-import com.alkemy.wallet.account.service.IAccountService;
+import com.alkemy.wallet.account.service.AccountService;
 import com.alkemy.wallet.model.dto.request.AccountRequestDto;
 import com.alkemy.wallet.model.dto.request.UpdateAccountRequestDto;
 import com.alkemy.wallet.model.dto.response.AccountBalanceResponseDto;
@@ -19,7 +19,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/api/v1/accounts")
 public class AccountController {
-    private final IAccountService accountService;
+    private final AccountService accountService;
 
     @GetMapping("/balance")
     public ResponseEntity<AccountBalanceResponseDto> geAccountBalance() {
@@ -29,14 +29,14 @@ public class AccountController {
     @Secured({"ROLE_ADMIN"})
     @GetMapping("/{userId}")
     public ResponseEntity<List<AccountResponseDto>> getAccountsByUserId(@PathVariable("userId") Long userId) {
-        return ResponseEntity.status(OK).body(accountService.getAccountListByUserId(userId));
+        return ResponseEntity.status(OK).body(accountService.getCustomerAssociatedAccounts(userId));
     }
 
     @PatchMapping("/{id}")
     public ResponseEntity<AccountResponseDto> updateAccount(@Validated
                                                             @RequestBody UpdateAccountRequestDto accountRequestDto,
                                                             @PathVariable("id") Long id) {
-        return ResponseEntity.status(OK).body(accountService.updateAccount(id, accountRequestDto));
+        return ResponseEntity.status(OK).body(accountService.modifyTransactionLimit(id, accountRequestDto));
     }
 
     @Secured({"ROLE_ADMIN"})

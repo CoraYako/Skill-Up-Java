@@ -9,7 +9,7 @@ import com.alkemy.wallet.model.dto.response.FixedTermDepositSimulationResponseDt
 import com.alkemy.wallet.account.domain.Account;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IFixedTermDepositRepository;
-import com.alkemy.wallet.account.service.IAccountService;
+import com.alkemy.wallet.account.service.AccountService;
 import com.alkemy.wallet.authentication.service.IAuthService;
 import com.alkemy.wallet.customer.service.CustomerService;
 import com.alkemy.wallet.utils.CustomMessageSource;
@@ -27,7 +27,7 @@ public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
 
     private final FixedTermDepositMapper mapper;
     private final IFixedTermDepositRepository repository;
-    private final IAccountService accountService;
+    private final AccountService accountService;
     private final IAuthService authService;
     private final CustomerService userService;
     private final CustomMessageSource messageSource;

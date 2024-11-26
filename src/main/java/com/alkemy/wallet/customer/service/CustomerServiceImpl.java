@@ -8,7 +8,7 @@ import com.alkemy.wallet.account.domain.Account;
 import com.alkemy.wallet.authentication.Role;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IUserRepository;
-import com.alkemy.wallet.account.service.IAccountService;
+import com.alkemy.wallet.account.service.AccountService;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -29,7 +29,7 @@ public class CustomerServiceImpl implements CustomerService {
 
     private final IUserRepository userRepository;
     private final CustomerMapper userMapper;
-    private final IAccountService accountService;
+    private final AccountService accountService;
     private final RoleService roleService;
     private final CustomMessageSource messageSource;
     private final BCryptPasswordEncoder passwordEncoder;

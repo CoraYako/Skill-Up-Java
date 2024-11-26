@@ -7,7 +7,7 @@ import com.alkemy.wallet.account.domain.Account;
 import com.alkemy.wallet.model.entity.Transaction;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.ITransactionRepository;
-import com.alkemy.wallet.account.service.IAccountService;
+import com.alkemy.wallet.account.service.AccountService;
 import com.alkemy.wallet.authentication.service.IAuthService;
 import com.alkemy.wallet.customer.service.CustomerService;
 import com.alkemy.wallet.transactionrecord.mapper.TransactionRecordMapper;
@@ -31,7 +31,7 @@ public class TransactionServiceImpl implements ITransactionService {
 
     private final TransactionRecordMapper mapper;
     private final ITransactionRepository repository;
-    private final IAccountService accountService;
+    private final AccountService accountService;
     private final CustomerService userService;
     private final IAuthService authService;
     private final CustomMessageSource messageSource;

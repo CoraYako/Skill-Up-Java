@@ -31,7 +31,7 @@ import static com.alkemy.wallet.utils.PageUtil.PAGE_SIZE;
 
 @Service
 @Transactional
-public class AccountServiceImpl implements IAccountService {
+public class AccountServiceImpl implements AccountService {
 
     protected static final double TRANSACTION_LIMIT_USD = 1000.0;
     protected static final double TRANSACTION_LIMIT_ARS = 300000.0;
@@ -79,7 +79,7 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public AccountResponseDto updateAccount(Long id, UpdateAccountRequestDto updateAccountRequestDto) {
+    public AccountResponseDto modifyTransactionLimit(Long id, UpdateAccountRequestDto updateAccountRequestDto) {
         Account account = getAccountById(id);
         if (!account.getUser().getEmail().equals(authService.getEmailFromContext()))
             throw new IllegalArgumentException(
@@ -157,7 +157,7 @@ public class AccountServiceImpl implements IAccountService {
     }
 
     @Override
-    public List<AccountResponseDto> getAccountListByUserId(Long userId) {
+    public List<AccountResponseDto> getCustomerAssociatedAccounts(Long userId) {
         List<Account> accounts = accountRepository.findAccountsByUserId(userId);
         if (accounts.isEmpty())
             throw new NoSuchElementException(messageSource.message("account.empty-list", null));
