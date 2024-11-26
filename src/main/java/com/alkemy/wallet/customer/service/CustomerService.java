@@ -1,29 +1,16 @@
 package com.alkemy.wallet.customer.service;
 
-import com.alkemy.wallet.model.dto.request.UserRequestDto;
-import com.alkemy.wallet.model.dto.request.UserUpdateRequestDto;
-import com.alkemy.wallet.model.dto.response.UserResponseDto;
-import com.alkemy.wallet.account.domain.Account;
-import com.alkemy.wallet.model.entity.User;
-import org.springframework.data.domain.Page;
+import com.alkemy.wallet.customer.domain.Customer;
+import com.alkemy.wallet.customer.dto.request.CredentialsModificationRequest;
+import com.alkemy.wallet.customer.dto.request.RegistrationRequest;
+import com.alkemy.wallet.customer.dto.response.ProfileDetailsResponse;
 
 public interface CustomerService {
+    void customerRegistration(RegistrationRequest registrationRequest);
 
-    UserResponseDto saveNewUser(UserRequestDto userRequestDto);
+    ProfileDetailsResponse updateCustomerCredentials(Customer loggedCustomer, CredentialsModificationRequest request);
 
-    UserResponseDto updateUser(Long id, User loggedUser, UserUpdateRequestDto userUpdateRequestDto);
+    void deactivateCustomerProfile(Customer loggedCustomer);
 
-    void deleteUserById(Long id, User loggedUser);
-
-    UserResponseDto getUserDetails(Long id, User loggedUser);
-
-    void addAccountToUser(User user, Account account);
-
-    User getUserById(Long id);
-
-    User getUserByEmail(String email);
-
-    boolean checkIfUserEmailExists(String email);
-
-    Page<UserResponseDto> getAllUsers(Integer pageNumber);
+    ProfileDetailsResponse getCustomerProfileDetails(Customer loggedCustomer);
 }
