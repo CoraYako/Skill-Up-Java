@@ -1,9 +1,11 @@
 package com.alkemy.wallet.repository;
 
-import com.alkemy.wallet.model.constant.AccountCurrencyEnum;
-import com.alkemy.wallet.model.constant.RoleEnum;
+import com.alkemy.wallet.account.domain.Account;
+import com.alkemy.wallet.account.domain.CurrencyType;
+import com.alkemy.wallet.auth.Role;
+import com.alkemy.wallet.fixedterm.domain.FixedTermDeposit;
+import com.alkemy.wallet.auth.RoleEnum;
 import com.alkemy.wallet.model.constant.TransactionTypeEnum;
-import com.alkemy.wallet.model.entity.*;
 import com.alkemy.wallet.utils.DateUtil;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -89,7 +91,7 @@ class IUserRepositoryTest {
         // Instantiating accounts
         Account account1, account2, account3, account4;
         account1 = new Account();
-        account1.setCurrency(AccountCurrencyEnum.ARS);
+        account1.setCurrency(CurrencyType.ARS);
         account1.setTransactionLimit(300000.0);
         account1.setBalance(0.0);
         account1.setUpdateDate(null);
@@ -98,7 +100,7 @@ class IUserRepositoryTest {
         account1.setFixedTermDeposits(null);
 
         account2 = new Account();
-        account2.setCurrency(AccountCurrencyEnum.USD);
+        account2.setCurrency(CurrencyType.USD);
         account2.setTransactionLimit(1000.0);
         account2.setBalance(0.0);
         account2.setUpdateDate(null);
@@ -107,7 +109,7 @@ class IUserRepositoryTest {
         account2.setFixedTermDeposits(null);
 
         account3 = new Account();
-        account3.setCurrency(AccountCurrencyEnum.ARS);
+        account3.setCurrency(CurrencyType.ARS);
         account3.setTransactionLimit(300000.0);
         account3.setBalance(0.0);
         account3.setUpdateDate(null);
@@ -116,7 +118,7 @@ class IUserRepositoryTest {
         account3.setFixedTermDeposits(null);
 
         account4 = new Account();
-        account4.setCurrency(AccountCurrencyEnum.USD);
+        account4.setCurrency(CurrencyType.USD);
         account4.setTransactionLimit(1000.0);
         account4.setBalance(0.0);
         account4.setUpdateDate(null);

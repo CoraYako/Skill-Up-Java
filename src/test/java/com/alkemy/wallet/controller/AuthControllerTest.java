@@ -10,7 +10,7 @@ import com.alkemy.wallet.model.dto.request.AuthRequestDto;
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.repository.IRoleRepository;
 import com.alkemy.wallet.repository.IUserRepository;
-import com.alkemy.wallet.service.IAccountService;
+import com.alkemy.wallet.account.IAccountService;
 import com.alkemy.wallet.service.IAuthenticationService;
 import com.alkemy.wallet.service.impl.AuthenticationServiceImpl;
 import org.junit.jupiter.api.BeforeEach;
