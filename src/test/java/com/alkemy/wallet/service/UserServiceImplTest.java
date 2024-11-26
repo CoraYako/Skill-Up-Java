@@ -11,9 +11,9 @@ import com.alkemy.wallet.model.dto.response.UserResponseDto;
 import com.alkemy.wallet.account.domain.Account;
 import com.alkemy.wallet.authentication.Role;
 import com.alkemy.wallet.model.entity.User;
-import com.alkemy.wallet.customer.mapper.UserMapper;
+import com.alkemy.wallet.customer.mapper.CustomerMapper;
 import com.alkemy.wallet.repository.IUserRepository;
-import com.alkemy.wallet.customer.service.UserServiceImpl;
+import com.alkemy.wallet.customer.service.CustomerServiceImpl;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
@@ -56,7 +56,7 @@ class UserServiceImplTest {
     @Mock
     protected IUserRepository userRepository;
     @Mock
-    protected UserMapper userMapper;
+    protected CustomerMapper userMapper;
     @Mock
     protected IAccountService accountService;
     @Mock
@@ -69,7 +69,7 @@ class UserServiceImplTest {
     @Captor
     protected ArgumentCaptor<User> argumentCaptor;
     @InjectMocks
-    protected UserServiceImpl underTest;
+    protected CustomerServiceImpl underTest;
 
     protected UserRequestDto userRequestDto1;
     protected UserRequestDto userRequestDto2;

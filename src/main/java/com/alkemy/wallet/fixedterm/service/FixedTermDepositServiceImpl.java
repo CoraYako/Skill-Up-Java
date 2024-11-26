@@ -11,7 +11,7 @@ import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IFixedTermDepositRepository;
 import com.alkemy.wallet.account.service.IAccountService;
 import com.alkemy.wallet.authentication.service.IAuthService;
-import com.alkemy.wallet.customer.service.IUserService;
+import com.alkemy.wallet.customer.service.CustomerService;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,7 +29,7 @@ public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
     private final IFixedTermDepositRepository repository;
     private final IAccountService accountService;
     private final IAuthService authService;
-    private final IUserService userService;
+    private final CustomerService userService;
     private final CustomMessageSource messageSource;
 
     @Override

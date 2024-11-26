@@ -9,7 +9,7 @@ import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.ITransactionRepository;
 import com.alkemy.wallet.account.service.IAccountService;
 import com.alkemy.wallet.authentication.service.IAuthService;
-import com.alkemy.wallet.customer.service.IUserService;
+import com.alkemy.wallet.customer.service.CustomerService;
 import com.alkemy.wallet.transactionrecord.mapper.TransactionMapper;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.data.domain.Page;
@@ -32,7 +32,7 @@ public class TransactionServiceImpl implements ITransactionService {
     private final TransactionMapper mapper;
     private final ITransactionRepository repository;
     private final IAccountService accountService;
-    private final IUserService userService;
+    private final CustomerService userService;
     private final IAuthService authService;
     private final CustomMessageSource messageSource;
 

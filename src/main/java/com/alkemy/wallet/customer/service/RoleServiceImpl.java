@@ -13,7 +13,7 @@ import static com.alkemy.wallet.authentication.RoleEnum.USER;
 
 @Service
 @Transactional
-public class RoleServiceImpl implements IRoleService {
+public class RoleServiceImpl implements RoleService {
 
     private final IRoleRepository roleRepository;
     private final CustomMessageSource messageSource;

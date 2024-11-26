@@ -12,7 +12,7 @@ import com.alkemy.wallet.model.entity.Transaction;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IAccountRepository;
 import com.alkemy.wallet.authentication.service.IAuthService;
-import com.alkemy.wallet.customer.service.IUserService;
+import com.alkemy.wallet.customer.service.CustomerService;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -39,7 +39,7 @@ public class AccountServiceImpl implements IAccountService {
     private final IAccountRepository accountRepository;
     private final AccountMapper accountMapper;
     private final IAuthService authService;
-    private final IUserService userService;
+    private final CustomerService userService;
     private final CustomMessageSource messageSource;
 
     @Override

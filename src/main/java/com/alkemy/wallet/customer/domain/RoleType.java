@@ -1,6 +1,6 @@
 package com.alkemy.wallet.customer.domain;
 
-public enum RoleEnum {
+public enum RoleType {
      ADMIN, USER;
 
      private static final String PREFIX = "ROLE_";

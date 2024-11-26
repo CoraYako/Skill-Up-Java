@@ -7,7 +7,7 @@ import com.alkemy.wallet.account.domain.Account;
 import com.alkemy.wallet.model.entity.User;
 import org.springframework.data.domain.Page;
 
-public interface IUserService {
+public interface CustomerService {
 
     UserResponseDto saveNewUser(UserRequestDto userRequestDto);
 

@@ -1,6 +1,6 @@
 package com.alkemy.wallet.customer.controller;
 
-import com.alkemy.wallet.customer.service.IUserService;
+import com.alkemy.wallet.customer.service.CustomerService;
 import com.alkemy.wallet.model.dto.request.UserUpdateRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
 import com.alkemy.wallet.model.entity.User;
@@ -15,8 +15,8 @@ import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("/api/v1/users")
-public class UserController {
-    private final IUserService userService;
+public class CustomerController {
+    private final CustomerService userService;
 
     @GetMapping("/{id}")
     public ResponseEntity<UserResponseDto> getUserDetails(@AuthenticationPrincipal User loggedUser, @PathVariable("id") Long id) {

@@ -6,7 +6,7 @@ import com.alkemy.wallet.model.dto.response.AuthResponseDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
 import com.alkemy.wallet.security.jwt.JwtUtils;
 import com.alkemy.wallet.security.service.UserDetailsCustomService;
-import com.alkemy.wallet.customer.service.IUserService;
+import com.alkemy.wallet.customer.service.CustomerService;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -21,7 +21,7 @@ public class AuthServiceImpl implements IAuthService {
     private final AuthenticationManager authenticationManager;
     private final UserDetailsCustomService userDetailsCustomService;
     private final JwtUtils jwtUtils;
-    private final IUserService userService;
+    private final CustomerService userService;
     private final CustomMessageSource messageSource;
 
     @Override

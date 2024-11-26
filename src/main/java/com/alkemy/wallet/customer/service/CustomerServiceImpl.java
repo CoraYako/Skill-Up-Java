@@ -1,6 +1,6 @@
 package com.alkemy.wallet.customer.service;
 
-import com.alkemy.wallet.customer.mapper.UserMapper;
+import com.alkemy.wallet.customer.mapper.CustomerMapper;
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.request.UserUpdateRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
@@ -25,12 +25,12 @@ import static com.alkemy.wallet.utils.PageUtil.PAGE_SIZE;
 import static java.time.LocalDateTime.now;
 
 @Service
-public class UserServiceImpl implements IUserService {
+public class CustomerServiceImpl implements CustomerService {
 
     private final IUserRepository userRepository;
-    private final UserMapper userMapper;
+    private final CustomerMapper userMapper;
     private final IAccountService accountService;
-    private final IRoleService roleService;
+    private final RoleService roleService;
     private final CustomMessageSource messageSource;
     private final BCryptPasswordEncoder passwordEncoder;
 

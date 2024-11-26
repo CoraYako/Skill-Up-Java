@@ -20,7 +20,7 @@ public class Role implements GrantedAuthority {
 
     @Column(nullable = false, name = "NAME")
     @Enumerated(EnumType.STRING)
-    private RoleEnum name;
+    private RoleType name;
 
     @DateTimeFormat(pattern = "yyyy/MM/dd")
     @Column(name = "CREATED_AT")
