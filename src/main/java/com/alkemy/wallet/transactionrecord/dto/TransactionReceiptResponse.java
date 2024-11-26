@@ -8,7 +8,6 @@ public record TransactionReceiptResponse(
         String operationType,
         String description,
         Long destinationAccountNumber,
-        String destinationClientName,
         LocalDateTime dateTime
 ) {
 }

@@ -6,7 +6,7 @@ public record FixedDepositDetailsResponse(
         Long id,
         String investedAmount,
         Long debitAccountNumber,
-        Double interestEarned,
+        String interestEarned,
         LocalDate startDate,
         LocalDate endDate
 ) {

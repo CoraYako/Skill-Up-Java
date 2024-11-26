@@ -59,7 +59,7 @@ public class FixedTermDepositServiceImpl implements IFixedTermDepositService {
         fixedTermDeposit.setAccount(account);
         fixedTermDeposit.setUser(user);
 
-        return mapper.entity2Dto(repository.save(fixedTermDeposit));
+        return mapper.toDto(repository.save(fixedTermDeposit));
     }
 
     @Override

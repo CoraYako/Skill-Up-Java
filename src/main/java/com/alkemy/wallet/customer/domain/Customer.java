@@ -50,11 +50,10 @@ public class Customer {
     @OneToMany(fetch = LAZY, cascade = ALL)
     private List<Account> associatedAccounts;
 
-    public Customer(String firstName, String lastName, String email, String password) {
+    public Customer(String firstName, String lastName, String email) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
         this.associatedAccounts = new ArrayList<>();
         this.active = true;
         this.registrationDate = LocalDateTime.now();
@@ -100,9 +99,9 @@ public class Customer {
             this.email = newEmail;
     }
 
-    public void updatePassword(String newPassword) {
-        if (Objects.nonNull(newPassword))
-            this.password = newPassword;
+    public void setPassword(String password) {
+        if (Objects.nonNull(password))
+            this.password = password;
     }
 
     public void setLastProfileModificationDate(LocalDateTime lastProfileModificationDate) {
