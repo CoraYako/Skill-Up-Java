@@ -1,6 +1,7 @@
 package com.alkemy.wallet.fixedterm.domain;
 
-import com.alkemy.wallet.account.domain.Account;
+import com.alkemy.wallet.account.domain.exception.NullAccount;
+import com.alkemy.wallet.account.domain.model.Account;
 import jakarta.persistence.*;
 import org.springframework.format.annotation.DateTimeFormat;
 

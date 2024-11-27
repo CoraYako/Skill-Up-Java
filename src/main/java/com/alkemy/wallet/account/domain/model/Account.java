@@ -1,4 +1,4 @@
-package com.alkemy.wallet.account.domain;
+package com.alkemy.wallet.account.domain.model;
 
 import com.alkemy.wallet.transactionrecord.domain.TransactionRecord;
 import jakarta.persistence.*;
@@ -87,6 +87,10 @@ public class Account {
 
     public boolean isClosed() {
         return closed;
+    }
+
+    public void deactivateAccount() {
+        this.closed = true;
     }
 
     public Set<TransactionRecord> getMovements() {

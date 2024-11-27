@@ -4,7 +4,7 @@ import com.alkemy.wallet.customer.mapper.CustomerMapper;
 import com.alkemy.wallet.model.dto.request.UserRequestDto;
 import com.alkemy.wallet.model.dto.request.UserUpdateRequestDto;
 import com.alkemy.wallet.model.dto.response.UserResponseDto;
-import com.alkemy.wallet.account.domain.Account;
+import com.alkemy.wallet.account.domain.model.Account;
 import com.alkemy.wallet.authentication.Role;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IUserRepository;

@@ -1,7 +1,7 @@
 package com.alkemy.wallet.utils;
 
 import com.alkemy.wallet.model.constant.TransactionTypeEnum;
-import com.alkemy.wallet.account.domain.Account;
+import com.alkemy.wallet.account.domain.model.Account;
 import com.alkemy.wallet.model.entity.Transaction;
 import com.alkemy.wallet.model.entity.User;
 

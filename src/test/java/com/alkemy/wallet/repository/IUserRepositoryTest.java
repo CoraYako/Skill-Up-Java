@@ -1,7 +1,7 @@
 package com.alkemy.wallet.repository;
 
-import com.alkemy.wallet.account.domain.Account;
-import com.alkemy.wallet.account.domain.CurrencyType;
+import com.alkemy.wallet.account.domain.model.Account;
+import com.alkemy.wallet.account.domain.model.CurrencyType;
 import com.alkemy.wallet.authentication.Role;
 import com.alkemy.wallet.fixedterm.domain.FixedTermDeposit;
 import com.alkemy.wallet.authentication.RoleEnum;

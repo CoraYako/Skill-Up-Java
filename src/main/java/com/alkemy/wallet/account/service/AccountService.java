@@ -8,9 +8,9 @@ import com.alkemy.wallet.customer.domain.Customer;
 import java.util.List;
 
 public interface AccountService {
-    void openNewAccount(OpenAccountRequest request);
+    void openAccount(OpenAccountRequest request);
 
-    AccountDetailsResponse modifyTransactionLimit(TransactionLimitModificationRequest limitModificationRequest);
+    AccountDetailsResponse modifyTransactionLimit(TransactionLimitModificationRequest request);
 
     void deactivateAccount(Long accountNumber);
 

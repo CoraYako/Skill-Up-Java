@@ -1,6 +1,6 @@
 package com.alkemy.wallet.account.repository;
 
-import com.alkemy.wallet.account.domain.Account;
+import com.alkemy.wallet.account.domain.model.Account;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
