@@ -6,7 +6,7 @@ import com.alkemy.wallet.model.dto.request.FixedTermDepositRequestDto;
 import com.alkemy.wallet.model.dto.request.FixedTermDepositSimulateRequestDto;
 import com.alkemy.wallet.model.dto.response.FixedTermDepositResponseDto;
 import com.alkemy.wallet.model.dto.response.FixedTermDepositSimulationResponseDto;
-import com.alkemy.wallet.account.domain.Account;
+import com.alkemy.wallet.account.domain.model.Account;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.IFixedTermDepositRepository;
 import com.alkemy.wallet.account.service.AccountService;

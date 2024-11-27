@@ -3,7 +3,7 @@ package com.alkemy.wallet.transactionrecord.service;
 import com.alkemy.wallet.model.dto.request.TransactionRequestDto;
 import com.alkemy.wallet.model.dto.request.UpdateTransactionRequestDto;
 import com.alkemy.wallet.model.dto.response.TransactionResponseDto;
-import com.alkemy.wallet.account.domain.Account;
+import com.alkemy.wallet.account.domain.model.Account;
 import com.alkemy.wallet.model.entity.Transaction;
 import com.alkemy.wallet.model.entity.User;
 import com.alkemy.wallet.repository.ITransactionRepository;

@@ -10,8 +10,8 @@ import org.springframework.security.access.annotation.Secured;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import static com.alkemy.wallet.account.domain.CurrencyType.ARS;
-import static com.alkemy.wallet.account.domain.CurrencyType.USD;
+import static com.alkemy.wallet.account.domain.model.CurrencyType.ARS;
+import static com.alkemy.wallet.account.domain.model.CurrencyType.USD;
 import static org.springframework.http.HttpStatus.CREATED;
 import static org.springframework.http.HttpStatus.OK;
 
