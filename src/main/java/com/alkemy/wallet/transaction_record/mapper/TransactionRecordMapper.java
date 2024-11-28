@@ -1,7 +1,7 @@
-package com.alkemy.wallet.transactionrecord.mapper;
+package com.alkemy.wallet.transaction_record.mapper;
 
-import com.alkemy.wallet.transactionrecord.domain.TransactionRecord;
-import com.alkemy.wallet.transactionrecord.dto.TransactionReceiptResponse;
+import com.alkemy.wallet.transaction_record.domain.TransactionRecord;
+import com.alkemy.wallet.transaction_record.dto.TransactionReceiptResponse;
 import org.springframework.stereotype.Component;
 
 @Component

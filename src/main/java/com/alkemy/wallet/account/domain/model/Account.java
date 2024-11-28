@@ -1,6 +1,6 @@
 package com.alkemy.wallet.account.domain.model;
 
-import com.alkemy.wallet.transactionrecord.domain.TransactionRecord;
+import com.alkemy.wallet.transaction_record.domain.TransactionRecord;
 import jakarta.persistence.*;
 import org.hibernate.annotations.SQLDelete;
 import org.hibernate.annotations.SQLRestriction;
