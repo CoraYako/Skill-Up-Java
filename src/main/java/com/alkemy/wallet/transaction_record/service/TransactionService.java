@@ -9,9 +9,9 @@ import java.util.List;
 
 public interface TransactionService {
     TransactionReceiptResponse recordTransaction(OperationType operationType, Account destinationAccount,
-                                                 BigDecimal amount, String description);
+                                                 Account originAccount, BigDecimal amount, String description);
 
-    TransactionReceiptResponse getTransactionRecordFromAccount(Long accountNumber);
+    TransactionReceiptResponse getTransactionRecordFromAccount(Account sourceAccount, Long transactionOperationNumber);
 
     List<TransactionReceiptResponse> getTransactionAccountHistory(Account sourceAccount);
 }

@@ -30,12 +30,17 @@ public class TransactionRecord {
     private LocalDateTime date;
 
     @ManyToOne(fetch = FetchType.EAGER)
+    @JoinColumn(name = "ORIGIN_ACCOUNT")
+    private Account originAccount;
+
+    @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "DESTINATION_ACCOUNT")
     private Account destinationAccount;
 
-    public TransactionRecord(OperationType operationType, Account destinationAccount,
+    public TransactionRecord(OperationType operationType, Account destinationAccount, Account originAccount,
                              BigDecimal amount, String description) {
         this.operationType = operationType;
+        this.originAccount = originAccount;
         this.destinationAccount = destinationAccount;
         this.amount = amount;
         this.description = description;
@@ -67,5 +72,9 @@ public class TransactionRecord {
 
     public Account getDestinationAccount() {
         return destinationAccount;
+    }
+
+    public Account getOriginAccount() {
+        return originAccount;
     }
 }

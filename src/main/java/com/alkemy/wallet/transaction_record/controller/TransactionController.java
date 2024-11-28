@@ -3,7 +3,7 @@ package com.alkemy.wallet.transaction_record.controller;
 import com.alkemy.wallet.model.dto.request.TransactionRequestDto;
 import com.alkemy.wallet.model.dto.request.UpdateTransactionRequestDto;
 import com.alkemy.wallet.model.dto.response.TransactionResponseDto;
-import com.alkemy.wallet.transaction_record.service.ITransactionService;
+import com.alkemy.wallet.transaction_record.service.TransactionService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
@@ -18,7 +18,7 @@ import static org.springframework.http.HttpStatus.OK;
 @RestController
 @RequestMapping("/api/v1/transactions")
 public class TransactionController {
-    private final ITransactionService transactionService;
+    private final TransactionService transactionService;
 
     @PostMapping("/sendArs")
     public ResponseEntity<TransactionResponseDto> sendARS(@Validated @RequestBody
