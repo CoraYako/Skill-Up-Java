@@ -1,4 +1,4 @@
-package com.alkemy.wallet.transactionrecord.service;
+package com.alkemy.wallet.transaction_record.service;
 
 import com.alkemy.wallet.model.dto.request.TransactionRequestDto;
 import com.alkemy.wallet.model.dto.request.UpdateTransactionRequestDto;
@@ -10,7 +10,7 @@ import com.alkemy.wallet.repository.ITransactionRepository;
 import com.alkemy.wallet.account.service.AccountService;
 import com.alkemy.wallet.authentication.service.IAuthService;
 import com.alkemy.wallet.customer.service.CustomerService;
-import com.alkemy.wallet.transactionrecord.mapper.TransactionRecordMapper;
+import com.alkemy.wallet.transaction_record.mapper.TransactionRecordMapper;
 import com.alkemy.wallet.utils.CustomMessageSource;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;

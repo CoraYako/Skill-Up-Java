@@ -1,4 +1,4 @@
-package com.alkemy.wallet.transactionrecord.dto;
+package com.alkemy.wallet.transaction_record.dto;
 
 import java.time.LocalDateTime;
 

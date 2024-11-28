@@ -1,4 +1,4 @@
-package com.alkemy.wallet.transactionrecord.service;
+package com.alkemy.wallet.transaction_record.service;
 
 import com.alkemy.wallet.model.dto.request.TransactionRequestDto;
 import com.alkemy.wallet.model.dto.request.UpdateTransactionRequestDto;

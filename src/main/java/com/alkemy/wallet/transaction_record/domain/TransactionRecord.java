@@ -1,4 +1,4 @@
-package com.alkemy.wallet.transactionrecord.domain;
+package com.alkemy.wallet.transaction_record.domain;
 
 import com.alkemy.wallet.account.domain.model.Account;
 import jakarta.persistence.*;

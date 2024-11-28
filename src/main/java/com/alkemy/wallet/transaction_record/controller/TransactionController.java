@@ -1,9 +1,9 @@
-package com.alkemy.wallet.transactionrecord.controller;
+package com.alkemy.wallet.transaction_record.controller;
 
 import com.alkemy.wallet.model.dto.request.TransactionRequestDto;
 import com.alkemy.wallet.model.dto.request.UpdateTransactionRequestDto;
 import com.alkemy.wallet.model.dto.response.TransactionResponseDto;
-import com.alkemy.wallet.transactionrecord.service.ITransactionService;
+import com.alkemy.wallet.transaction_record.service.ITransactionService;
 import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.annotation.Secured;
